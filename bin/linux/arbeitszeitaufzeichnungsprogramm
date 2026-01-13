@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+# Wrapper script for Arbeitszeitaufzeichnungsprogramm
+# This script activates the venv, runs the Python script, and deactivates
+
+# Exit on error
+set -e
+
+# Get the project root directory (2 levels up from this script)
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
+
+# Activate the virtual environment - use wildcards to find it
+shopt -s nullglob
+activate_scripts=("$PROJECT_ROOT"/.venv*/bin/activate)
+shopt -u nullglob
+
+if [ ${#activate_scripts[@]} -gt 0 ]; then
+    source "${activate_scripts[0]}"
+else
+    echo "Error: Could not find virtual environment activation script" >&2
+    exit 1
+fi
+
+# Run the Python script with all arguments passed to this script
+python3 "$PROJECT_ROOT/src/arbeitszeitaufzeichnungsprogramm.py" "$@"
+
+# Store the exit code
+EXIT_CODE=$?
+
+# Deactivate the virtual environment
+deactivate
+
+# Exit with the same error code as the Python script
+exit $EXIT_CODE
+

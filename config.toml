@@ -1,0 +1,25 @@
+# Arbeitszeitaufzeichnungsprogramm Configuration File
+[general]
+# Default data directory where CSV files are stored
+data_directory = "data"
+# Number of days to show after logging an entry
+show_days_after_log = 5
+# Path to store application data. Absoulte or relative to the config.
+data_path = "data"
+
+[holidays]
+# Country code for holidays (ISO 3166-1 alpha-2)
+# Examples: DE (Germany), US (United States), AT (Austria), CH (Switzerland)
+country = "DE"
+# Subdivision/state code (optional, depends on country)
+# Germany: BW, BY, BE, BB, HB, HH, HE, MV, NI, NW, RP, SL, SN, ST, SH, TH
+# US: AL, AK, AZ, AR, CA, CO, CT, DE, FL, GA, etc.
+subdivision = "BY"
+
+[work]
+# Default work hours per day (for summary calculations)
+default_hours_per_day = 8.0
+
+[display]
+# Replace NaN values with this string
+nan_replacement = "-"
