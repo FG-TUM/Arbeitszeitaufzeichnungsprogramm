@@ -1,0 +1,4 @@
+holidays>=0.35
+pandas>=2.0.0
+pytest>=7.0.0
+pytest-cov>=4.0.0

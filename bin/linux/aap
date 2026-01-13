@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# alias script for a shorter name
+"$(dirname "$0")"/arbeitszeitaufzeichnungsprogramm "$@"
