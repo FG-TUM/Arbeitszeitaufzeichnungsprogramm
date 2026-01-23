@@ -23,3 +23,5 @@ default_hours_per_day = 8.0
 [display]
 # Replace NaN values with this string
 nan_replacement = "-"
+# Table format for displaying data (options see: https://pypi.org/project/tabulate/)
+table_format = "presto"

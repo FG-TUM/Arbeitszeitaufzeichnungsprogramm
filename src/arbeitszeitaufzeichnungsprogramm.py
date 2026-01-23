@@ -232,12 +232,17 @@ def show_csv(date_arg: date, days: int, path: Path):
     df_month = pd.read_csv(filename, dtype=dummy_df().dtypes.to_dict(), skipinitialspace=True).fillna(
         config['display']['nan_replacement'])
 
+    # Add day of week to the date column
+    df_month['Date'] = pd.to_datetime(df_month['Date']).dt.strftime('%Y-%m-%d %A')
+
     if days is None:
-        print(df_month.to_string(index=False))
+        to_print = df_month
     else:
         end_idx = min(len(df_month), date_arg.day)
         start_idx = max(0, end_idx - days)
-        print(df_month.iloc[start_idx:end_idx].to_string(index=False))
+        to_print = df_month.iloc[start_idx:end_idx]
+
+    print(to_print.to_markdown(index=False, tablefmt=config['display']['table_format']))
 
 
 def parse_args() -> argparse.Namespace:
